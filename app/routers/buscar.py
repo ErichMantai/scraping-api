@@ -15,7 +15,7 @@ router = APIRouter(prefix="/buscar", tags=["Busca"])
 
 @router.get("", summary="Buscar produtos no Mercado Livre")
 async def buscar(
-    termo:   str = Query(..., description="Produto a buscar", example="whey protein"),
+    termo:   str = Query(..., description="Produto a buscar", openapi_examples={"default": {"value": "whey protein"}}),
     paginas: int = Query(1, description="Páginas a coletar (1-10, ~48 produtos cada)", ge=1, le=10),
     db:      AsyncSession = Depends(get_db),
     client:  ApiKey       = Depends(validate_api_key),

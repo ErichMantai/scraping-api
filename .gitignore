@@ -10,3 +10,5 @@ build/
 .DS_Store
 pagina.html
 output/
+uvicorn_out.txt
+uvicorn_err.txt

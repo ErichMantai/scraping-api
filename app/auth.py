@@ -1,11 +1,12 @@
 import secrets
 from datetime import datetime
-from fastapi import Security, HTTPException, status
+from fastapi import Security, HTTPException, status, Depends
 from fastapi.security import APIKeyHeader
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.models import ApiKey
 from app.config import settings
+from app.database import get_db
 
 api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
 
@@ -17,7 +18,7 @@ def generate_api_key() -> str:
 
 async def validate_api_key(
     key: str = Security(api_key_header),
-    db: AsyncSession = None,
+    db: AsyncSession = Depends(get_db),
 ) -> ApiKey:
     """Valida a API Key e retorna o cliente. Levanta 401/403 se inválida."""
     if not key:
