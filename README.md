@@ -91,7 +91,7 @@ Resposta:
 {
   "message": "Cliente criado com sucesso.",
   "id": 1,
-  "name": "Cliente Teste",
+  "name": "Cliente Teste1",
   "api_key": "a1b2c3d4...",
   "rate_limit": 10
 }
